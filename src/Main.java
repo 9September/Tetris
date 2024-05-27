@@ -9,6 +9,7 @@ public class Main {
 
     private JFrame frame;
     private JLabel statusbar;
+    private JLabel information;
     private List<ScoreEntry> scores;
 
     public Main() {
@@ -16,6 +17,9 @@ public class Main {
 
         statusbar = new JLabel("SCORE: 0");
         frame.add(statusbar, BorderLayout.SOUTH); // JLabel을 JFrame에 추가
+
+        information = new JLabel("Rotation: Z, Pause: P");
+        frame.add(information, BorderLayout.NORTH);
 
         scores = new ArrayList<>();
 
