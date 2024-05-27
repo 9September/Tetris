@@ -260,9 +260,9 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void drawSquare(Graphics g, int x, int y, Tetrominoes shape, int squareSize) {
-        Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102), new Color(102, 204, 102),
-                new Color(102, 102, 204), new Color(204, 204, 102), new Color(204, 102, 204),
-                new Color(102, 204, 204), new Color(218, 170, 0)};
+        Color colors[] = {new Color(0, 0, 0), new Color(101, 243, 68), new Color(238, 192, 56),
+                new Color(241, 26, 26), new Color(187, 36, 215), new Color(25, 38, 112),
+                new Color(54, 79, 245), new Color(248, 145, 65)};
 
         Color color = colors[shape.ordinal()];
 
@@ -306,6 +306,9 @@ public class Board extends JPanel implements ActionListener {
                     oneLineDown();
                     break;
                 case KeyEvent.VK_UP:
+                    tryMove(curPiece.rotateLeft(), curX, curY);
+                    break;
+                case KeyEvent.VK_Z:
                     tryMove(curPiece.rotateLeft(), curX, curY);
                     break;
                 case KeyEvent.VK_SPACE:
