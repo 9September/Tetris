@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
 public class Board extends JPanel implements ActionListener {
@@ -22,6 +25,8 @@ public class Board extends JPanel implements ActionListener {
     RankingPanel rankingPanel;
     List<ScoreEntry> scores;
     Main main;
+    private Image backgroundImage;
+    private int w, h;
 
     public Board(Main main) {
         this.main = main;
@@ -36,6 +41,12 @@ public class Board extends JPanel implements ActionListener {
         board = new Tetrominoes[BoardWidth * BoardHeight];
         addKeyListener(new TAdapter());
         clearBoard();
+        loadImage();
+    }
+
+    private void loadImage() {
+        ImageIcon ii = new ImageIcon("imgs/images.jpeg"); // 여기에 다운로드한 이미지 경로를 입력하세요.
+        backgroundImage = ii.getImage();
     }
 
     public void setNextPiecePanel(NextPiecePanel nextPiecePanel) {
@@ -103,6 +114,10 @@ public class Board extends JPanel implements ActionListener {
         int boardX = (getWidth() - boardWidth) / 2;
         int boardY = (getHeight() - boardHeight) / 2;
 
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+
         drawGrid(g, boardX, boardY, squareSize); // 그리드 라인 그리기
 
         for (int i = 0; i < BoardHeight; i++) {
@@ -124,7 +139,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void drawGrid(Graphics g, int boardX, int boardY, int squareSize) {
-        g.setColor(new Color(200, 200, 200)); // 연한 회색
+        g.setColor(new Color(0, 0, 0)); // 연한 회색
         for (int i = 0; i <= BoardHeight; i++) {
             g.drawLine(boardX, boardY + i * squareSize, boardX + BoardWidth * squareSize, boardY + i * squareSize);
         }
@@ -141,6 +156,8 @@ public class Board extends JPanel implements ActionListener {
             }
             --newY;
         }
+        numLinesRemoved += 10;
+        statusBar.setText("SCORE: " + numLinesRemoved);
         pieceDropped();
     }
 
