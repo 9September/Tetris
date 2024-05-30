@@ -1,3 +1,5 @@
+package main.java;
+
 public class ScoreEntry {
     private String name;
     private int score;

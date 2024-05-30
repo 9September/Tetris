@@ -1,9 +1,8 @@
+package main.java;
+
 import java.awt.*;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.List;
 
 public class Board extends JPanel implements ActionListener {
@@ -45,7 +44,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void loadImage() {
-        ImageIcon ii = new ImageIcon("imgs/images.jpeg"); // 여기에 다운로드한 이미지 경로를 입력하세요.
+        ImageIcon ii = new ImageIcon(getClass().getResource("/main/java/imgs/images.jpeg"));
         backgroundImage = ii.getImage();
     }
 
